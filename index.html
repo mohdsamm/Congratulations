@@ -16,7 +16,7 @@
             align-items: center;
             justify-content: center;
             z-index: 1000;
-            background: linear-gradient(135deg, #080808, #000000);
+            background: linear-gradient(135deg, #e4b0b2, #cf8453);
         }
 
         .doors {
@@ -86,7 +86,7 @@
             border-radius: 50%;
             position: absolute;
             bottom: -100px;
-            animation: balloonAnimation 3s ease-in-out infinite;
+            animation: balloonAnimation 3s ease-in-out infinite, balloonPop 0.2s ease-out forwards;
         }
 
         .balloon:nth-child(1) {
@@ -151,13 +151,23 @@
             }
         }
 
+        @keyframes balloonPop {
+            90% {
+                transform: scale(1.2); /* Balloon grows */
+            }
+            100% {
+                transform: scale(0); /* Balloon shrinks to nothing */
+                opacity: 0;
+            }
+        }
+
         /* Sparkle effect when balloon bursts */
         .sparkle {
             position: absolute;
-            width: 0px;
-            height: 0px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
-            background-color: #b62020;
+            background-color: #ffffff;
             animation: sparkleAnimation 1s infinite;
             opacity: 0;
         }
@@ -199,6 +209,7 @@
             text-align: center;
             background-color: #2e0d1c;
             padding: 50px;
+            box-sizing: border-box;
         }
 
         .certificate {
@@ -224,47 +235,56 @@
             margin-bottom: 10px;
             color: #333333;
         }
+
         .certificate h2 {
             font-size: 2rem;
             margin-bottom: 20px;
             color: #555555;
         }
+
         .certificate p {
             font-size: 1.25rem;
             margin: 10px 0;
             color: #777777;
         }
+
         .certificate .name {
             font-size: 2rem;
             font-weight: bold;
             color: #d4af37;
             margin: 20px 0;
         }
+
         .certificate .achievement {
             font-style: italic;
             font-size: 1.5rem;
             color: #555555;
         }
+
         .certificate .footer {
             margin-top: 30px;
             display: flex;
             justify-content: space-between;
         }
+
         .certificate .footer div {
             text-align: center;
             width: 45%;
             position: relative;
         }
+
         .signature {
             font-size: 1.2rem;
             color: #333333;
             margin-top: 10px;
         }
+
         .signature-right {
             font-size: 1.2rem;
             margin-left: 20px;
             display: inline-block;
         }
+
         .signature-italic-bold {
             font-size: 1.2rem;
             margin-left: 20px;
@@ -272,6 +292,7 @@
             font-weight: bolder;
             font-style: italic;
         }
+
         .date-box {
             display: inline-block;
             padding: 5px;
@@ -279,11 +300,83 @@
             bottom: 20px;
             right: 20px;
         }
+
         .appreciation-message {
             font-size: 1.5rem;
             color: #333333;
             margin-top: 20px;
             line-height: 1.6;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .certificate {
+                width: 90%;
+                padding: 20px;
+            }
+
+            .certificate h1 {
+                font-size: 2rem;
+            }
+
+            .certificate h2 {
+                font-size: 1.8rem;
+            }
+
+            .certificate p {
+                font-size: 1.1rem;
+            }
+
+            .certificate .name {
+                font-size: 1.8rem;
+            }
+
+            .certificate .achievement {
+                font-size: 1.3rem;
+            }
+
+            .certificate .footer {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .certificate .footer div {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .date-box {
+                position: relative;
+                bottom: unset;
+                right: unset;
+                margin-top: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .certificate {
+                width: 95%;
+            }
+
+            .certificate h1 {
+                font-size: 1.8rem;
+            }
+
+            .certificate h2 {
+                font-size: 1.6rem;
+            }
+
+            .certificate .name {
+                font-size: 1.6rem;
+            }
+
+            .certificate .achievement {
+                font-size: 1.2rem;
+            }
+
+            .appreciation-message {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
@@ -320,32 +413,9 @@
         <p class="achievement">For reaching an incredible milestone of</p>
         <h2>10 Million Subscribers on YouTube</h2>
         <div class="appreciation-message">
-            Your passion, creativity, and unwavering dedication to your craft have earned you this incredible milestone. Reaching 10 million subscribers is no small feat—it is a testament to your hard work, your ability to inspire, and the impact you've made on countless people around the world. We celebrate your achievement today, and we can't wait to see what you accomplish next! Keep pushing boundaries and inspiring others to follow their dreams.
-        </div>
-        <div class="footer">
-            <div>
-                <div>
-                    <span class="signature">Signature</span>
-                    <span class="signature-italic-bold">Neal Mohan</span>
-                </div>
-            </div>
-        </div>
-        <div class="date-box">
-            <span class="signature">Date</span><br>
-            <span class="signature-italic-bold">18/01/25</span>
+            Your passion, creativity, and unwavering dedication to your craft have earned you this incredible milestone. Reaching 10 million subscribers is no small feat—it is a testament to your hard work, your ability to inspire, and the impact you've made on countless people around the world. We celebrate your achievement today, and we can't wait to see...
         </div>
     </div>
-
-    <script>
-        window.onload = function() {
-            // Simulate loading by delaying the transition
-            setTimeout(function() {
-                // Hide preloader after animation
-                document.getElementById('preloader').style.display = 'none';
-                document.getElementById('certificate').style.display = 'block';
-            }, 5000); // 5 seconds for animation time
-        };
-    </script>
 
 </body>
 </html>
