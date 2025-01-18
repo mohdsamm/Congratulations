@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate of Achievement</title>
+    <style>
+        /* Preloader styles */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            background: linear-gradient(135deg, #080808, #000000);
+        }
+
+        .doors {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            z-index: 1000;
+            overflow: hidden;
+            opacity: 1;
+            animation: doorsFadeOut 2.5s ease-in-out forwards 2.5s;
+        }
+
+        @keyframes doorsFadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .door {
+            flex: 1;
+            background: #b66060;
+            animation: doorOpen 2.5s ease-in-out forwards;
+        }
+
+        .door:nth-child(2) {
+            background: #d68670;
+        }
+
+        @keyframes doorOpen {
+            0% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .door:first-child {
+            animation: doorOpenLeft 2.5s ease-in-out forwards;
+        }
+
+        @keyframes doorOpenLeft {
+            0% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .doors.hide {
+            display: none;
+        }
+
+        /* Balloon burst animation */
+        .balloon {
+            width: 40px;
+            height: 60px;
+            border-radius: 50%;
+            position: absolute;
+            bottom: -100px;
+            animation: balloonAnimation 3s ease-in-out infinite;
+        }
+
+        .balloon:nth-child(1) {
+            background-color: #ff6347;
+            left: 10%;
+        }
+
+        .balloon:nth-child(2) {
+            background-color: #1e90ff;
+            left: 25%;
+            animation-delay: 0.5s;
+        }
+
+        .balloon:nth-child(3) {
+            background-color: #32cd32;
+            left: 40%;
+            animation-delay: 1s;
+        }
+
+        .balloon:nth-child(4) {
+            background-color: #ff1493;
+            left: 55%;
+            animation-delay: 1.5s;
+        }
+
+        .balloon:nth-child(5) {
+            background-color: #ffff00;
+            left: 70%;
+            animation-delay: 2s;
+        }
+
+        .balloon:nth-child(6) {
+            background-color: #ff6347;
+            left: 80%;
+            animation-delay: 0.5s;
+        }
+
+        .balloon:nth-child(7) {
+            background-color: #1e90ff;
+            left: 90%;
+            animation-delay: 1s;
+        }
+
+        @keyframes balloonAnimation {
+            0% {
+                bottom: -100px;
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            50% {
+                bottom: 200px;
+                opacity: 1;
+                transform: scale(1.5);
+            }
+            70% {
+                transform: scale(0.2);
+                opacity: 0;
+            }
+            100% {
+                bottom: -100px;
+                opacity: 0;
+            }
+        }
+
+        /* Sparkle effect when balloon bursts */
+        .sparkle {
+            position: absolute;
+            width: 0px;
+            height: 0px;
+            border-radius: 50%;
+            background-color: #b62020;
+            animation: sparkleAnimation 1s infinite;
+            opacity: 0;
+        }
+
+        .sparkle:nth-child(1) {
+            animation-delay: 0.3s;
+            left: 30%;
+        }
+
+        .sparkle:nth-child(2) {
+            animation-delay: 0.6s;
+            left: 35%;
+        }
+
+        .sparkle:nth-child(3) {
+            animation-delay: 0.9s;
+            left: 40%;
+        }
+
+        @keyframes sparkleAnimation {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+
+        /* Certificate styles */
+        body {
+            margin: 0;
+            font-family: 'Times New Roman', Times, serif;
+            text-align: center;
+            background-color: #2e0d1c;
+            padding: 50px;
+        }
+
+        .certificate {
+            display: none;
+            border: 15px solid #d4af37;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 20px;
+            width: 80%;
+            height: 80%;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .certificate h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #333333;
+        }
+        .certificate h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #555555;
+        }
+        .certificate p {
+            font-size: 1.25rem;
+            margin: 10px 0;
+            color: #777777;
+        }
+        .certificate .name {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #d4af37;
+            margin: 20px 0;
+        }
+        .certificate .achievement {
+            font-style: italic;
+            font-size: 1.5rem;
+            color: #555555;
+        }
+        .certificate .footer {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .certificate .footer div {
+            text-align: center;
+            width: 45%;
+            position: relative;
+        }
+        .signature {
+            font-size: 1.2rem;
+            color: #333333;
+            margin-top: 10px;
+        }
+        .signature-right {
+            font-size: 1.2rem;
+            margin-left: 20px;
+            display: inline-block;
+        }
+        .signature-italic-bold {
+            font-size: 1.2rem;
+            margin-left: 20px;
+            display: inline-block;
+            font-weight: bolder;
+            font-style: italic;
+        }
+        .date-box {
+            display: inline-block;
+            padding: 5px;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+        .appreciation-message {
+            font-size: 1.5rem;
+            color: #333333;
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Preloader section -->
+    <div class="preloader" id="preloader">
+        <div class="doors">
+            <div class="door"></div>
+            <div class="door"></div>
+        </div>
+        <!-- Balloons spread across the screen -->
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+
+        <!-- Sparkles that come from balloons bursting -->
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+    </div>
+
+    <!-- Certificate content -->
+    <div class="certificate" id="certificate">
+        <h1>Certificate of Achievement</h1>
+        <p>This is proudly presented to</p>
+        <div class="name">Abdur Rafay</div>
+        <p class="achievement">For reaching an incredible milestone of</p>
+        <h2>10 Million Subscribers on YouTube</h2>
+        <div class="appreciation-message">
+            Your passion, creativity, and unwavering dedication to your craft have earned you this incredible milestone. Reaching 10 million subscribers is no small feat—it is a testament to your hard work, your ability to inspire, and the impact you've made on countless people around the world. We celebrate your achievement today, and we can't wait to see what you accomplish next! Keep pushing boundaries and inspiring others to follow their dreams.
+        </div>
+        <div class="footer">
+            <div>
+                <div>
+                    <span class="signature">Signature</span>
+                    <span class="signature-italic-bold">Neal Mohan</span>
+                </div>
+            </div>
+        </div>
+        <div class="date-box">
+            <span class="signature">Date</span><br>
+            <span class="signature-italic-bold">18/01/25</span>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            // Simulate loading by delaying the transition
+            setTimeout(function() {
+                // Hide preloader after animation
+                document.getElementById('preloader').style.display = 'none';
+                document.getElementById('certificate').style.display = 'block';
+            }, 5000); // 5 seconds for animation time
+        };
+    </script>
+
+</body>
+</html>
