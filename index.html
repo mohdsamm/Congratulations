@@ -48,15 +48,8 @@
         }
 
         @keyframes doorOpen {
-            0% {
-                transform: translateX(0);
-            }
-            50% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(100%);
-            }
+            0% { transform: translateX(0); }
+            100% { transform: translateX(100%); }
         }
 
         .door:first-child {
@@ -64,19 +57,8 @@
         }
 
         @keyframes doorOpenLeft {
-            0% {
-                transform: translateX(0);
-            }
-            50% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-100%);
-            }
-        }
-
-        .doors.hide {
-            display: none;
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
         }
 
         /* Balloon burst animation */
@@ -86,7 +68,7 @@
             border-radius: 50%;
             position: absolute;
             bottom: -100px;
-            animation: balloonAnimation 3s ease-in-out infinite, balloonPop 0.2s ease-out forwards;
+            animation: balloonAnimation 3s ease-in-out infinite;
         }
 
         .balloon:nth-child(1) {
@@ -151,16 +133,6 @@
             }
         }
 
-        @keyframes balloonPop {
-            90% {
-                transform: scale(1.2); /* Balloon grows */
-            }
-            100% {
-                transform: scale(0); /* Balloon shrinks to nothing */
-                opacity: 0;
-            }
-        }
-
         /* Sparkle effect when balloon bursts */
         .sparkle {
             position: absolute;
@@ -168,8 +140,8 @@
             height: 8px;
             border-radius: 50%;
             background-color: #ffffff;
-            animation: sparkleAnimation 1s infinite;
             opacity: 0;
+            animation: sparkleAnimation 1s infinite;
         }
 
         .sparkle:nth-child(1) {
@@ -209,7 +181,6 @@
             text-align: center;
             background-color: #2e0d1c;
             padding: 50px;
-            box-sizing: border-box;
         }
 
         .certificate {
@@ -307,77 +278,6 @@
             margin-top: 20px;
             line-height: 1.6;
         }
-
-        /* Mobile responsiveness */
-        @media (max-width: 768px) {
-            .certificate {
-                width: 90%;
-                padding: 20px;
-            }
-
-            .certificate h1 {
-                font-size: 2rem;
-            }
-
-            .certificate h2 {
-                font-size: 1.8rem;
-            }
-
-            .certificate p {
-                font-size: 1.1rem;
-            }
-
-            .certificate .name {
-                font-size: 1.8rem;
-            }
-
-            .certificate .achievement {
-                font-size: 1.3rem;
-            }
-
-            .certificate .footer {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .certificate .footer div {
-                width: 100%;
-                margin: 10px 0;
-            }
-
-            .date-box {
-                position: relative;
-                bottom: unset;
-                right: unset;
-                margin-top: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .certificate {
-                width: 95%;
-            }
-
-            .certificate h1 {
-                font-size: 1.8rem;
-            }
-
-            .certificate h2 {
-                font-size: 1.6rem;
-            }
-
-            .certificate .name {
-                font-size: 1.6rem;
-            }
-
-            .certificate .achievement {
-                font-size: 1.2rem;
-            }
-
-            .appreciation-message {
-                font-size: 1.2rem;
-            }
-        }
     </style>
 </head>
 <body>
@@ -388,6 +288,7 @@
             <div class="door"></div>
             <div class="door"></div>
         </div>
+
         <!-- Balloons spread across the screen -->
         <div class="balloon"></div>
         <div class="balloon"></div>
@@ -397,9 +298,7 @@
         <div class="balloon"></div>
         <div class="balloon"></div>
 
-        <!-- Sparkles that come from balloons bursting -->
-        <div class="sparkle"></div>
-        <div class="sparkle"></div>
+        <!-- Sparkles -->
         <div class="sparkle"></div>
         <div class="sparkle"></div>
         <div class="sparkle"></div>
@@ -413,9 +312,30 @@
         <p class="achievement">For reaching an incredible milestone of</p>
         <h2>10 Million Subscribers on YouTube</h2>
         <div class="appreciation-message">
-            Your passion, creativity, and unwavering dedication to your craft have earned you this incredible milestone. Reaching 10 million subscribers is no small feat—it is a testament to your hard work, your ability to inspire, and the impact you've made on countless people around the world. We celebrate your achievement today, and we can't wait to see...
+            Your passion, creativity, and unwavering dedication to your craft have earned you this incredible milestone. Reaching 10 million subscribers is no small feat—it is a testament to your hard work, your ability to inspire, and the impact you've made on countless people around the world. We celebrate your achievement today, and we can't wait to see what you accomplish next! Keep pushing boundaries and inspiring others to follow their dreams.
+        </div>
+        <div class="footer">
+            <div>
+                <div>
+                    <span class="signature">Signature</span>
+                    <span class="signature-italic-bold">Neal Mohan</span>
+                </div>
+            </div>
+        </div>
+        <div class="date-box">
+            <span class="signature">Date</span><br>
+            <span class="signature-italic-bold">18/01/25</span>
         </div>
     </div>
+
+    <script>
+        window.onload = function() {
+            setTimeout(function() {
+                document.getElementById('preloader').style.display = 'none';
+                document.getElementById('certificate').style.display = 'block';
+            }, 5000); // 5 seconds for animation time
+        };
+    </script>
 
 </body>
 </html>
