@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Certificate of Achievement</title>
     <style>
+        @media screen and (max-width: 768px) {
+            .footer {
+                flex-direction: column; /* Stack signature and date vertically */
+                align-items: center;   /* Center align the items */
+            }
+    
+            .date-box {
+                position: static;      /* Remove absolute positioning */
+                margin-top: 20px;      /* Add spacing between signature and date */
+                text-align: center;    /* Center align the date */
+            }
+        }
+    </style>    
+    <style>
         /* Preloader styles */
         .preloader {
             position: fixed;
